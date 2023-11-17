@@ -28,7 +28,7 @@ class ContactController extends Controller
 
     public function delete($id)
     {
-        // Logique pour supprimer une adressess
+        // Logique pour supprimer une adressesss
     }
 }
 
