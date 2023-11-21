@@ -26,10 +26,13 @@ class AddressController extends Controller
         public function show($id)
         {
              // Récupérer l'adresse depuis la base de données en fonction de l'ID
-    $address = Address::findOrFail($id);
+             $address = Address::find($id);
 
-    // Renvoyer l'adresse en tant que réponse JSON
-    return response()->json($address);
+             if ($address) {
+                 return response()->json($address);
+             } else {
+                 return response()->json(['message' => 'Adresse non trouvée.'], 404);
+             }
         }
 
 
@@ -44,20 +47,25 @@ class AddressController extends Controller
     
         public function create(Request $request)
         {
-            // Valider les données de la requête
-            $request->validate([
-               
-                'ville' => 'required',
-         
-            ]);
+            try {
+                // Valider les données de la requête
+                $request->validate([
+                    'ville' => 'required',
+                ]);
         
-            // Créer une nouvelle adresse dans la base de données
-            $address = Address::create($request->all());
+                // Créer une nouvelle adresse dans la base de données
+                $address = Address::create($request->all());
         
-            // Renvoyer les détails de la nouvelle adresse en tant que réponse JSON
-            return response()->json($address, 201);
+                // Renvoyer les détails de la nouvelle adresse en tant que réponse JSON
+                return response()->json($address, 201);
+            } catch (ValidationException $e) {
+                // La validation a échoué
+                return response()->json(['error' => $e->errors()], 400);
+            } catch (\Exception $e) {
+                // Une autre exception s'est produite
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
         }
-
 
 
 

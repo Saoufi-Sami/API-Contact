@@ -15,8 +15,13 @@ class ContactController extends Controller
 
     public function show($id)
     {
-        $contact = Contact::findOrFail($id);
-        return response()->json($contact);
+        $contact = Contact::find($id);
+
+        if ($contact) {
+            return response()->json($contact);
+        } else {
+            return response()->json(['message' => 'Contact non trouvé.'], 404);
+        }
     }
 
     public function create(Request $request)
