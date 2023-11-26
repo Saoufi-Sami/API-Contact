@@ -89,6 +89,7 @@ class AddressController extends Controller
 
     // Mettre à jour les détails de l'adresse
     $address->update($request->all());
+    
 
     // Renvoyer les détails de l'adresse mise à jour en tant que réponse JSON
     return response()->json($address);
@@ -101,6 +102,8 @@ class AddressController extends Controller
 
     // Supprimer l'adresse
     $address->delete();
+
+    
 
     // Renvoyer une réponse indiquant le succès de l'opération
     return response()->json(null, 204);
