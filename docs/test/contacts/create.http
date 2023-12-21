@@ -2,7 +2,7 @@ POST http://127.0.0.1:8000/api/contacts HTTP/1.1
 Content-Type: application/json
 
 {
-    "nom": "sami", 
-    "prenom": "martine",
-    "adresses_id": 9 
+    "nom": "sarah", 
+    "prenom": "cosem",
+    "adresses_id": 10
 }
