@@ -91,7 +91,7 @@ class AddressController extends Controller
     $address->update($request->all());
     
 
-    // Renvoyer les détails de l'adresse mise à jour en tant que réponse JSON
+    // Renvoyer les détails de l'adresse mise à jour en tant que réponse JSON.
     return response()->json($address);
         }
     
